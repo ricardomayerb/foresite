@@ -12,6 +12,9 @@ tags:
   - VAR
 ---
 
+
+## Te amo, Fran!!!
+
 Here is a very rudimentary comparison of out-sample forecast accuracy between our current bridge-sarimax implementation and a balanced-data  VAR (see here: sarimax and var). Specifically, we use data from Brazil to forecast real GDP growth and use realized and forecasted values several steps ahead to compute frequently used accuracy measures: RMSE, MAE, MASE and Theil's U. Since the code involved is written in Stata ans Excel, we cannot re-run those calculation in a R Markdown document and we are limited to just show tables and plots with those results.
 
 
