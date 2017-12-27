@@ -41,11 +41,17 @@ tags:
 <li>MAE</li>
 <li>MASE</li>
 <li>Theil’s U</li>
-<li></li>
 </ul></li>
 </ul>
 </div>
 <div id="results" class="section level3">
 <h3>Results</h3>
+<p>General comments: Overall the VARs seem to be more robust and reliable.</p>
+<p>In the last period averages of the 6 models for the test statistics are a little worse than for the ARIMAX. This seems to be because the VARs perform bad in the first two quarters. From h=4,5 and 6 ahead they outperform the arimax.</p>
+<p>There are also individual VARs with better test statistics for the last period. But all six together over all Hs ahead, the ARIMAX performs slightly better in the last test.</p>
+<p>sarimax on brazilian data<br />
+RMSE MAE MASE Theil’s U test data 2015Q2 - 2016Q4 4.960 4.835 0.656 1.546997261 test data 2015Q3 - 2016Q4 2.327923657 2.285945001 0.367270452 0.777169406 test data 2015Q4 - 2016Q4 0.935629868 2.285945001 0.083347158 0.171151481 test data 2016Q2 - 2017Q2 1.504787988 1.152207568 0.198420788 0.457281994</p>
+<p>VARs on brazilian data<br />
+RMSE MAE MASE Theil’s U test data 2015Q2 - 2016Q4 1.347 1.125 0.153 0.419981774 test data 2015Q3 - 2016Q4 0.819060802 0.708548627 0.113838686 0.273440667 test data 2015Q4 - 2016Q4 0.816560721 0.682391989 0.063435454 0.149370581 test data 2016Q2 - 2017Q2 1.587135664 1.21283223 0.208860915 0.482306189</p>
 </div>
 </div>
