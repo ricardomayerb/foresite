@@ -1,0 +1,48 @@
+---
+title: Relative accuracy of bridge-sarimax vs simplest VAR for brazilian gdp
+author: ricardo
+date: '2017-12-26'
+slug: relative-accuracy-of-bridge-sarimax-vs-simplest-var-for-brazilian-gdp
+categories:
+  - comparison
+  - stata
+tags:
+  - accuracy
+  - sarimax
+  - VAR
+---
+
+Here is a very rudimentary comparison of out-sample forecast accuracy between our current bridge-sarimax implementation and a balanced-data  VAR (see here: sarimax and var). Specifically, we use data from Brazil to forecast real GDP growth and use realized and forecasted values several steps ahead to compute frequently used accuracy measures: RMSE, MAE, MASE and Theil's U. Since the code involved is written in Stata ans Excel, we cannot re-run those calculation in a R Markdown document and we are limited to just show tables and plots with those results.
+
+
+## First exercise: no leading monthly information
+
+### Set up
+
+- Data: quarterly and monthly data for Brazil, curated  by Pablo. This vintage includes quarterly  real GDP from 1997Q1 to 2017Q3, and monthly data, with some of it up to 2017M10  (that is, one month ahead of GDP).  Then we consider four subsamples:
+    1.  1997Q1 to 2015Q1  (and 2015M3 for monthly variables ... more on this later)
+    2.  1997Q1 to 2015Q2 (2015M6)
+    3.  1997Q1 to 2015Q3 (2015M6)
+    4.  1997Q1 to 2016Q1 (2015M6)
+    
+    
+- Forecasts: quarterly YoY percentage changes of real gdp (e.g -2.1% for 2016Q2, 1,1% for 2016Q2, etc.). We haven't touch the sarimax legacy code and by default its forecast horizon is not fixed: it always forecasts up to the 4th quarter of the next year. That means the following set of predictions for each subsample:
+    1.  2015Q2 to 2016Q4 (7 forecasted values and 7 observations)
+    2.  2015Q3 to 2016Q4 (6 forecasted values and 6 observations)
+    3.  2015Q4 to 2016Q4 (5 forecasted values and 5 observations)
+    4.  2016Q2 to 2017Q4 (7 forecasted values and 6 observations up to 2017Q3)
+    
+    
+- Methods: bridge-SARIMAX and  simple balaced-data VAR. These are described in separated posts (see here: sarimax and var) 
+    
+
+   
+- Accuracy measures: using out-of-subsample forecasts and actual data on the same period being forecasted, we construct the following statistics
+    - RMSE
+    - MAE
+    - MASE
+    - Theil's U
+    - 
+
+### Results
+
