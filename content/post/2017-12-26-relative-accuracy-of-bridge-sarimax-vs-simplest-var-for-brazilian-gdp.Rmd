@@ -1,5 +1,5 @@
 ---
-title: Relative accuracy of bridge-sarimax vs simplest VAR for brazilian gdp
+title: Relative accuracy of bridge-sarimax vs simplest VAR for brazilian GDP
 author: Ricardo Mayer
 date: '2017-12-26'
 slug: relative-accuracy-of-bridge-sarimax-vs-simplest-var-for-brazilian-gdp
@@ -13,11 +13,6 @@ tags:
 ---
 
 
-## Te amo, Fran!!!
-
-## Basta, Lupe!!! 
-
-## Lupita, no has comido!!!
 
 Here is a very rudimentary comparison of out-sample forecast accuracy between our current bridge-sarimax implementation and a balanced-data  VAR (see here: sarimax and var). Specifically, we use data from Brazil to forecast real GDP growth and use realized and forecasted values several steps ahead to compute frequently used accuracy measures: RMSE, MAE, MASE and Theil's U. Since the code involved is written in Stata ans Excel, we cannot re-run those calculation in a R Markdown document and we are limited to just show tables and plots with those results.
 
