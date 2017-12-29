@@ -63,7 +63,7 @@ There are also individual VARs with better test statistics for the last period. 
 
 
 
-```{r}
+```{r, echo=FALSE}
 
 error_names <- c("VAR", "SARIMAX","VAR", "SARIMAX","VAR", "SARIMAX","VAR", "SARIMAX")
 
