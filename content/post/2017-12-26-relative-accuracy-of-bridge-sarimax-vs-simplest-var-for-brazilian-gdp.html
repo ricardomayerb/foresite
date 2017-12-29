@@ -49,11 +49,6 @@ tags:
 <p>General comments: Overall the VARs seem to be more robust and reliable.</p>
 <p>In the last period averages of the 6 models for the test statistics are a little worse than for the ARIMAX. This seems to be because the VARs perform bad in the first two quarters. From h=4,5 and 6 ahead they outperform the arimax.</p>
 <p>There are also individual VARs with better test statistics for the last period. But all six together over all Hs ahead, the ARIMAX performs slightly better in the last test.</p>
-<pre class="r"><code>error_names &lt;- c(&quot;VAR&quot;, &quot;SARIMAX&quot;,&quot;VAR&quot;, &quot;SARIMAX&quot;,&quot;VAR&quot;, &quot;SARIMAX&quot;,&quot;VAR&quot;, &quot;SARIMAX&quot;)
-
-knitr::kable(
-  data_for_table, booktabs = TRUE, digits = 2, col.names = error_names,
-  caption = &#39;Out-of-sample errors, VAR vs SARIMAX&#39;, align = &#39;c&#39;, padding = 2) </code></pre>
 <table>
 <caption><span id="tab:unnamed-chunk-2">Table 1: </span>Out-of-sample errors, VAR vs SARIMAX</caption>
 <thead>

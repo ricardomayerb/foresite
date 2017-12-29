@@ -64,8 +64,8 @@ There are also individual VARs with better test statistics for the last period. 
 
 
 ```{r, echo=FALSE}
-error_names <- c("VAR", "SARIMAX","VAR", "SARIMAX","VAR", "SARIMAX","VAR", "SARIMAX")
 
+error_names <- c("VAR", "SARIMAX","VAR", "SARIMAX","VAR", "SARIMAX","VAR", "SARIMAX")
 knitr::kable(
   data_for_table, booktabs = TRUE, digits = 2, col.names = error_names,
   caption = 'Out-of-sample errors, VAR vs SARIMAX', align = 'c', padding = 2) 
