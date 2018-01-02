@@ -51,8 +51,13 @@ Here is a very rudimentary comparison of out-sample forecast accuracy between ou
 library(kableExtra)
 load("./../../varsarimaxcomp.rda") # loads compa_data
 data_for_table <- compa_data[,-1]
-```
 
+test_data_dates <- c("2015Q2:2016Q4  ", "2015Q3:2016Q4  ",
+               "2015Q4:2016Q4  ", "2016Q2:2017Q2  ")
+
+data_for_table <- cbind(test_data_dates, data_for_table)
+
+```
 
 
 General comments: Overall the VARs seem to be more robust and reliable. 
@@ -64,11 +69,10 @@ There are also individual VARs with better test statistics for the last period. 
 
 
 ```{r, echo=FALSE}
-
-error_names <- c("VAR", "SARIMAX","VAR", "SARIMAX","VAR", "SARIMAX","VAR", "SARIMAX")
+error_names <- c("Test data","VAR", "SARIMAX","VAR", "SARIMAX","VAR", "SARIMAX","VAR", "SARIMAX")
 knitr::kable(
-  data_for_table, booktabs = TRUE, digits = 2, col.names = error_names,
-  caption = 'Out-of-sample errors, VAR vs SARIMAX', align = 'c', padding = 2) 
+  data_for_table, booktabs = TRUE, digits = 1, col.names = error_names,
+  caption = 'Out-of-sample errors, VAR vs SARIMAX', align = 'c', padding = 2)  
 
 ```
 
