@@ -48,21 +48,6 @@ tags:
 <h3>Results</h3>
 <p>General comments: Overall, VARs seem to be more robust and reliable. For all but the last test period VARs show smaller forecast errors –in all three measures– than SARIMAX. In that last test period, SARIMAX has a slightly smaller RMSE and is basically tied with VARs regarding MAE and Theil’s U.</p>
 <p>This seems to be because the VARs perform bad in the first two quarters. From h=4,5 and 6 ahead they outperform the SARIMAX. Thus, the longer the test sample, the more opportunities there are for the VAR to outperform the SARIMAX.</p>
-<!-- ```{r, echo=FALSE, results='asis'} -->
-<!-- error_names <- c(" ","VAR", "SARIMAX","VAR", "SARIMAX","VAR", "SARIMAX","VAR", "SARIMAX") -->
-<!-- error_names_2 <- c(" ","var_rmse", "sarimax_rmse","var_mae", "sarimax_mae","var_mase", "sarimax_mase","var_u", "sarimax_u") -->
-<!-- table_caption <- 'Out-of-sample errors, VAR vs SARIMAX' -->
-<!-- library(DT) -->
-<!-- datatable(data_for_table, -->
-<!--           style = 'default', -->
-<!--           colnames = error_names_2, -->
-<!--           caption = table_caption,  -->
-<!--           filter = 'none', -->
-<!--           rownames = FALSE -->
-<!--           ) %>% -->
-<!--   formatRound(2:9, 1) %>%  -->
-<!--   formatStyle(1:9, fontSize = '15px') -->
-<!-- ``` -->
 <table class="myTable">
 <caption>
 <span id="tab:unnamed-chunk-2">Table 1: </span>Out-of-sample errors, VAR vs SARIMAX
