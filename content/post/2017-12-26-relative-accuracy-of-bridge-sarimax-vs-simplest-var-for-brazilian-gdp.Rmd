@@ -52,6 +52,9 @@ Here is a **very** rudimentary comparison of out-sample forecast accuracy betwee
 ### Results
 
 ```{r, echo=FALSE, message=FALSE, results='hide', include=FALSE}
+
+# theme = "hugo-lithium-theme"
+
 #library(knitr)
 library(kableExtra)
 library(dplyr)
@@ -112,13 +115,44 @@ knitr::kable(data_for_table[,c(-6,-7)],
              padding = 2,
              col.names = error_names_no_mase,
              table.attr='class="myTable"'
-      )%>%
+      ) %>%
   column_spec(c(2,3,6,7), background = "#d3d3d3") %>%
   add_header_above(c(" " = 1, "RMSE" = 2, "MAE" = 2,
                      "Theil's U" = 2))
 
 
 ```
+
+
+foo
+
+
+```{r, echo=FALSE, results='asis'}
+error_names <- c(" "," VAR ", " SARIMAX "," VAR ", " SARIMAX "," VAR ", 
+                         " SARIMAX "," VAR ", " SARIMAX ")
+
+error_names_no_mase <- c(" "," VAR ", " SARIMAX"," VAR ",  
+                         " SARIMAX "," VAR ", " SARIMAX ")
+
+table_caption <- 'trying bootstrap options'
+
+
+
+knitr::kable(data_for_table[,c(-6,-7)],
+             digits = 1,
+             escape = FALSE,
+             caption = table_caption,
+             align = 'c',
+             padding = 2,
+             col.names = error_names_no_mase
+      ) %>%
+  add_header_above(c(" " = 1, "RMSE" = 2, "MAE" = 2,
+                     "Theil's U" = 2))
+
+
+```
+
+
 
 <style>
   .myTable td {
