@@ -84,7 +84,7 @@ knitr::kable(
   caption = 'Out-of-sample errors, VAR vs SARIMAX', 
   align = 'c',
   padding = 2,
-  escape = F
+  nescape = F
       ) %>% 
   kable_styling(font_size = 15, "hover", full_width = F)  %>%
   add_header_above(c(" " = 1, "RMSE" = 2, "MAE" = 2, "MASE" = 2,
