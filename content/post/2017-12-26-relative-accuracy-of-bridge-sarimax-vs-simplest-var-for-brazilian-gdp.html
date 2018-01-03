@@ -3,9 +3,7 @@ title: Relative accuracy of bridge-sarimax vs simplest VAR for brazilian GDP
 author: Ricardo Mayer
 date: '2017-12-26'
 output: 
-  prettydoc::html_pretty:
-    theme: cayman
-    highlight: github
+  htlm_document
 slug: relative-accuracy-of-bridge-sarimax-vs-simplest-var-for-brazilian-gdp
 categories:
   - comparison
@@ -53,7 +51,7 @@ tags:
 <p>General comments: Overall, VARs seem to be more robust and reliable.</p>
 <p>In the last period averages of the 6 models for the test statistics are a little worse than for the ARIMAX. This seems to be because the VARs perform bad in the first two quarters. From h=4,5 and 6 ahead they outperform the arimax.</p>
 <p>There are also individual VARs with better test statistics for the last period. But all six together over all Hs ahead, the ARIMAX performs slightly better in the last test.</p>
-<table class="table" style="font-size: 15px; margin-left: auto; margin-right: auto;">
+<table class="table table-hover" style="font-size: 15px; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
 <span id="tab:unnamed-chunk-2">Table 1: </span>Out-of-sample errors, VAR vs SARIMAX
 </caption>
