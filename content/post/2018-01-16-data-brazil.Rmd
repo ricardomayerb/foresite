@@ -1,0 +1,83 @@
+---
+title: data Brazil
+author: Ricardo Mayer
+date: '2018-01-16'
+slug: data-brazil
+categories:
+  - data
+tags:
+  - data
+---
+
+```{r setup, message=FALSE}
+options(knitr.table.format = "html", knitr.kable.NA = '') 
+library(kableExtra)
+library(tidyr)
+library(dplyr)
+library(timetk)
+library(readxl)
+library(lubridate)
+library(purrr)
+library(forecast)
+library(ggplot2)
+```
+
+
+## Data sources and definition
+
+## Data storage 
+
+## Data exploration
+
+### Data loading
+
+load
+```{r data_load}
+country_q <- read_excel("../../Brasil.xlsx", sheet = "quarterly")
+country_m <- read_excel("../../Brasil.xlsx", sheet = "monthly")
+```
+
+
+
+clean up
+
+```{r }
+data_q <- country_q %>% select(-c(year, quarter, trim, hlookup)) %>% 
+  filter(!is.na(rgdp))
+
+data_q$date <- ymd(data_q$date)
+```
+
+options(servr.daemon = TRUE, blogdown.author = "John Doe")
+reshape
+
+```{r reshape_and_nesting}
+start_year <- min(year(data_q$date))
+
+data_q_long <- data_q %>% gather(variable, value, -date)
+
+data_q_nested <- data_q_long %>% group_by(variable) %>% 
+  nest(.key = "data.tbl")
+
+
+data_q_n_ts <- data_q_nested %>% 
+  mutate(data.ts = map(.x   =  data.tbl,
+                       .f   =  tk_ts,
+                       start = start_year,
+                       freq = 4
+                       )
+         )
+
+foo <- tbl_df(data_q)
+
+# for foo convert to ts
+
+
+```
+
+
+
+
+## Summary of properties
+
+
