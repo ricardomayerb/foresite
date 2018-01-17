@@ -1,0 +1,100 @@
+---
+title: data Brazil
+author: Ricardo Mayer
+date: '2018-01-16'
+slug: data-brazil
+categories:
+  - data
+tags:
+  - data
+---
+
+
+
+<pre class="r"><code>options(knitr.table.format = &quot;html&quot;, knitr.kable.NA = &#39;&#39;) 
+library(kableExtra)
+library(tidyr)
+library(dplyr)
+library(timetk)
+library(readxl)
+library(lubridate)
+library(purrr)
+library(forecast)
+library(ggplot2)</code></pre>
+<div id="data-sources-and-definition" class="section level2">
+<h2>Data sources and definition</h2>
+</div>
+<div id="data-storage" class="section level2">
+<h2>Data storage</h2>
+</div>
+<div id="data-exploration" class="section level2">
+<h2>Data exploration</h2>
+<div id="data-loading" class="section level3">
+<h3>Data loading</h3>
+<p>load</p>
+<pre class="r"><code>country_q &lt;- read_excel(&quot;../../Brasil.xlsx&quot;, sheet = &quot;quarterly&quot;)
+country_m &lt;- read_excel(&quot;../../Brasil.xlsx&quot;, sheet = &quot;monthly&quot;)</code></pre>
+<p>clean up</p>
+<pre class="r"><code>data_q &lt;- country_q %&gt;% select(-c(year, quarter, trim, hlookup)) %&gt;% 
+  filter(!is.na(rgdp))
+
+data_q$date &lt;- ymd(data_q$date)</code></pre>
+<p>options(servr.daemon = TRUE, blogdown.author = “John Doe”) reshape</p>
+<pre class="r"><code>start_year &lt;- min(year(data_q$date))
+
+data_q_long &lt;- data_q %&gt;% gather(variable, value, -date)
+
+data_q_nested &lt;- data_q_long %&gt;% group_by(variable) %&gt;% 
+  nest(.key = &quot;data.tbl&quot;)
+
+
+data_q_n_ts &lt;- data_q_nested %&gt;% 
+  mutate(data.ts = map(.x   =  data.tbl,
+                       .f   =  tk_ts,
+                       start = start_year,
+                       freq = 4
+                       )
+         )</code></pre>
+<pre><code>## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
+## numeric columns being dropped: date
+
+## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
+## numeric columns being dropped: date
+
+## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
+## numeric columns being dropped: date
+
+## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
+## numeric columns being dropped: date
+
+## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
+## numeric columns being dropped: date
+
+## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
+## numeric columns being dropped: date
+
+## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
+## numeric columns being dropped: date
+
+## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
+## numeric columns being dropped: date
+
+## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
+## numeric columns being dropped: date
+
+## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
+## numeric columns being dropped: date
+
+## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
+## numeric columns being dropped: date
+
+## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
+## numeric columns being dropped: date</code></pre>
+<pre class="r"><code>foo &lt;- tbl_df(data_q)
+
+# for foo convert to ts</code></pre>
+</div>
+</div>
+<div id="summary-of-properties" class="section level2">
+<h2>Summary of properties</h2>
+</div>
