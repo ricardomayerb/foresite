@@ -1,12 +1,13 @@
 ---
-title: data Brazil
+title: Brazil data
 author: Ricardo Mayer
 date: '2018-01-16'
-slug: data-brazil
 categories:
   - data
 tags:
   - data
+  - Brazil
+slug: brazil-data
 ---
 
 
@@ -20,7 +21,8 @@ library(readxl)
 library(lubridate)
 library(purrr)
 library(forecast)
-library(ggplot2)</code></pre>
+library(ggplot2)
+library(tibbletime)</code></pre>
 <div id="data-sources-and-definition" class="section level2">
 <h2>Data sources and definition</h2>
 </div>
@@ -39,14 +41,18 @@ country_m &lt;- read_excel(&quot;../../Brasil.xlsx&quot;, sheet = &quot;monthly&
   filter(!is.na(rgdp))
 
 data_q$date &lt;- ymd(data_q$date)</code></pre>
-<p>options(servr.daemon = TRUE, blogdown.author = “John Doe”) reshape</p>
+<p>Three versions of the data set for different purposes: - multicolumn ts (mts) object - multicolumn xts object - a tibble with list column, to apply functions for each series and store results as another list column (think estimation model, results, etc)</p>
 <pre class="r"><code>start_year &lt;- min(year(data_q$date))
+
+data_q_mts &lt;- tk_ts(data_q, start = start_year, frequency = 4)
+data_q_xts &lt;- tk_xts(data_q, date_var = date)
+
+data_q_tbt &lt;- as_tbl_time(data_q, index = date)
 
 data_q_long &lt;- data_q %&gt;% gather(variable, value, -date)
 
 data_q_nested &lt;- data_q_long %&gt;% group_by(variable) %&gt;% 
   nest(.key = &quot;data.tbl&quot;)
-
 
 data_q_n_ts &lt;- data_q_nested %&gt;% 
   mutate(data.ts = map(.x   =  data.tbl,
@@ -54,45 +60,17 @@ data_q_n_ts &lt;- data_q_nested %&gt;%
                        start = start_year,
                        freq = 4
                        )
-         )</code></pre>
-<pre><code>## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
-## numeric columns being dropped: date
+         )
 
-## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
-## numeric columns being dropped: date
+plotbase_q &lt;- ggplot(data = data_q_long,
+                     aes(x = date, y = value, colour = variable))  
 
-## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
-## numeric columns being dropped: date
+plot_q &lt;- plotbase_q + geom_line() + 
+  facet_wrap(~variable, scales = &quot;free_y&quot;, ncol = 3) 
 
-## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
-## numeric columns being dropped: date
-
-## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
-## numeric columns being dropped: date
-
-## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
-## numeric columns being dropped: date
-
-## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
-## numeric columns being dropped: date
-
-## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
-## numeric columns being dropped: date
-
-## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
-## numeric columns being dropped: date
-
-## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
-## numeric columns being dropped: date
-
-## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
-## numeric columns being dropped: date
-
-## Warning in tk_xts_.data.frame(ret, select = select, silent = silent): Non-
-## numeric columns being dropped: date</code></pre>
-<pre class="r"><code>foo &lt;- tbl_df(data_q)
-
-# for foo convert to ts</code></pre>
+plot_q</code></pre>
+<p><img src="/post/2018-01-16-data-brazil_files/figure-html/reshape_and_nesting-1.png" width="672" /></p>
+<p>Some plots</p>
 </div>
 </div>
 <div id="summary-of-properties" class="section level2">
