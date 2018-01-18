@@ -178,7 +178,7 @@ latest_rgdp <- latest_rgdp[["max_date"]]
 
 Ranges for montlhy and quarterly variables
 
-- Latest real GDP date:  `r latest_rgdp0000000000000000000000000000000000000` 
+- Latest real GDP date:  `r latest_rgdp` 
 - Latest monthly date: `r monthly_absolute_max`  
 - Latest quarterly date: `r quarterly_absolute_max`  
 - Earliest monthly date: `r monthly_absolute_min`  
