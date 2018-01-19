@@ -231,3 +231,24 @@ p_date_q <- p_date_base_q + geom_line(aes(x = date_not_nas, group = variable), n
 p_date_q
 
 ```
+
+
+### Statistical properties
+
+
+#### Autocorrelation
+
+```{r acf_plots_in_tbl}
+
+foo <- data_m_n_ts %>% 
+  mutate(acf_plot_m = map(.x = data.ts,
+                        .f = ggAcf,
+                        lag.max = 48
+                        )
+         )
+  
+
+```
+
+
+
